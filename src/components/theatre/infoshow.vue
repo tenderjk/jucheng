@@ -12,7 +12,7 @@
     </div>
     <div class="info_content">
       <ul>
-        <li v-for="(item,index) in infoshowData.show_list" :key="index">
+        <li @click="jump(item.id)" v-for="(item,index) in infoshowData.show_list" :key="index">
           <div class="timeline">
             <span>{{item.show_time}}</span>
           </div>
@@ -34,7 +34,8 @@
 </template>
 <script>
 export default {
-  props: ['infoshowData']
+  props: ['infoshowData'],
+  inject: ['jump']
 }
 </script>
 <style lang="scss">

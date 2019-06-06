@@ -10,7 +10,7 @@ export default {
   props: ['adsData']
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .ads {
   width: 2.94rem;
   margin: 0 auto;

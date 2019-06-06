@@ -81,7 +81,7 @@
         <p>{{item.desc}}</p>
       </div>
     </mt-popup>
-    <div class="recommandContain">
+    <div class="recommandContain" v-if="shoeListFlag">
       <recommand :recommandList="showList"/>
     </div>
   </div>
@@ -91,6 +91,7 @@ import axios from 'axios'
 import recommand from '@/components/ticket/recommand'
 export default {
   props: ['id'],
+  inject: ['reload'],
   data () {
     return {
       backgroundImg: '',
@@ -114,7 +115,8 @@ export default {
       popupVisible: false,
       city_id: '',
       cate_parent_id: '',
-      showList: []
+      showList: [],
+      shoeListFlag: false
     }
   },
   components: {
@@ -150,6 +152,12 @@ export default {
     let showList = await axios(`https://m.juooo.com/Search/getShowList?category=${this.cate_parent_id}&city_id=${this.city_id}&version=5.1.4&referer=2`)
     showList = showList.data.data.list
     this.showList = showList
+    this.shoeListFlag = true
+  },
+  watch: {
+    $route (to, from) {
+      this.reload()
+    }
   }
 }
 </script>

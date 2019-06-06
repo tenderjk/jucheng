@@ -3,10 +3,35 @@
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <router-view v-if="isRouterAlive&&!$route.meta.keepAlive"></router-view>
     <router-view name="footer"></router-view>
   </div>
 </template>
+<script>
+export default {
+  data () {
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    async changeAlive () {
+      this.isRouterAlive = false
+      await this.$nextTick()
+      this.isRouterAlive = true
+    },
+    jump (id) {
+      this.$router.push({ name: 'ticket', params: { id } })
+    }
+  },
+  provide () {
+    return {
+      reload: this.changeAlive,
+      jump: this.jump
+    }
+  }
+}
+</script>
 <style lang="scss">
 @import '@/lib/reset.scss';
 #app {

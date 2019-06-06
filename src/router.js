@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import Footer from '@/components/footer'
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +16,7 @@ export default new Router({
       name: 'home',
       components: {
         default: () => import('@/views/Home'),
-        footer: () => import('@/components/footer')
+        footer: Footer
       },
       meta: {
         keepAlive: true
@@ -27,7 +27,7 @@ export default new Router({
       name: 'theatre',
       components: {
         default: () => import('@/views/Theatre'),
-        footer: () => import('@/components/footer')
+        footer: Footer
       }
     },
     {
@@ -38,6 +38,19 @@ export default new Router({
         footer: () => import('@/components/ticket/addbuy')
       },
       props: { default: true }
+    },
+    {
+      path: '/user',
+      name: 'user',
+      components: {
+        default: () => import('@/views/User'),
+        footer: Footer
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/Login')
     }
   ]
 })

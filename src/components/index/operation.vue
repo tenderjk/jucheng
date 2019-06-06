@@ -33,17 +33,21 @@ export default {
       operationPart2: []
     }
   },
-  watch: {
-    operationList (val) {
-      this.operationPart1 = val.slice(0, 2)
-      this.operationPart2 = val.slice(2)
-      // console.log(val)
-      // return this.$props.operationlist.slice(0,2)
-    }
+  // watch: {
+  //   operationList (val) {
+  //     this.operationPart1 = val.slice(0, 2)
+  //     this.operationPart2 = val.slice(2)
+  //     // console.log(val)
+  //     // return this.$props.operationlist.slice(0,2)
+  //   }
+  // },
+  mounted () {
+    this.operationPart1 = this.$props.operationList.slice(0, 2)
+    this.operationPart2 = this.$props.operationList.slice(2)
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/lib/reset.scss';
 .operation {
   background: #f5f5f5;

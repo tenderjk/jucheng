@@ -3,7 +3,7 @@
     <swipe :bannerList="bannerList"/>
     <classify :classifyList="classifyList" />
     <ads :adsData="adsData" />
-    <operation :operationList="operationList" />
+    <operation v-if="showoperation" :operationList="operationList" />
     <hotshow :hotshowList="hotshowList"/>
     <section class="categoryContain">
       <category v-for="item in categoryList" :categoryList="item" :key="item.cat_id" />
@@ -41,10 +41,11 @@ export default {
       operationList: null,
       hotshowList: null,
       categoryList: null,
+      showoperation: false,
       recommandLink: 'https://m.juooo.com/home/getRecommendShow?cityAdd=SH&version=5.1.4&referer=2'
     }
   },
-  async mounted () {
+  async beforeCreate () {
     // 轮播图数据
     let bannerData = await axios.get('https://m.juooo.com/home/getSildeList?abbreviation=SH&limit=version=5.1.3&referer=2&timestamp=' + new Date().getTime())
     bannerData = bannerData.data.data.silde_list.slice(0, bannerData.data.data.silde_list.length - 2)
@@ -55,6 +56,7 @@ export default {
     classifyData = classifyData.data.data
     this.classifyList = classifyData.classify_list
     this.operationList = classifyData.operation_list
+    this.showoperation = true
     // 广告数据
     let adsData = await axios.get('https://m.juooo.com/home/getAd?city_id=4&version=5.1.3&referer=2&timestamp=' + new Date().getTime())
     adsData = adsData.data.data.advert1[0].pic

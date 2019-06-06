@@ -1,8 +1,8 @@
 <template>
     <section class="recommand">
       <h4 class="title">为你推荐</h4>
-      <ul class="recommandContain" :infinite-scroll-immediate-check="true" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-        <li v-for="(item,index) in recommandData" :key="index">
+      <ul class="recommandContain" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+        <li @click="jump(item.schedular_id)" v-for="(item,index) in recommandData" :key="index">
           <div class="img">
             <img :src="item.pic" alt="">
           </div>
@@ -22,6 +22,7 @@
 <script>
 export default {
   props: ['recommandList'],
+  inject: ['jump'],
   data () {
     return {
       loading: false,

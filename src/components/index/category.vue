@@ -2,7 +2,7 @@
   <div class="category" v-if="categoryLeastList.length>1">
     <mt-cell is-link :title="categoryList.title" value="更多">
     </mt-cell>
-    <div class="bg">
+    <router-link :to="{ name:'ticket', params: { id: cover.sche_id} }" tag="div" class="bg">
       <div class="cover">
         <img :src="cover.pic" alt="">
       </div>
@@ -11,14 +11,14 @@
         <p class="description">{{cover.schedular_name}}</p>
         <address><span>{{cover.city_name}}</span>&nbsp;|&nbsp;<span>{{cover.venue_name}}</span></address>
       </div>
-    </div>
+    </router-link>
     <div class="cetegorylist">
        <ul class="cetegorylistul">
-        <li v-for="(item, index) in categoryLeastList" :key="index">
+        <router-link :to="{ name:'ticket', params: { id: item.sche_id} }" tag="li" v-for="(item, index) in categoryLeastList" :key="index">
           <img :src="item.pic" alt="">
           <h3>{{item.schedular_name}}</h3>
           <p class="low_price">￥<span>{{item.low_price | fixedToZero}}</span>起</p>
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>

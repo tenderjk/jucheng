@@ -13,7 +13,7 @@ export default {
   props: ['classifyList']
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/lib/reset.scss';
 .classify {
   margin-top: 0.1rem;

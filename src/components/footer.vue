@@ -13,7 +13,7 @@
               <span class="iconfont icon-piaojia"></span>
               <p>票夹</p>
             </router-link>
-            <router-link tag="li" :to="{ name: 'home' }">
+            <router-link tag="li" :to="{ name: 'user' }">
               <span class="iconfont icon-iconfuzhi"></span>
               <p>我的</p>
             </router-link>

@@ -3,7 +3,7 @@
     <mt-cell is-link title="热门演出" value="更多">
     </mt-cell>
     <ul class="hotshow_list">
-      <li v-for="(item, index) in hotshowData" :key="index">
+      <li @click="jump(item.schedular_url)" v-for="(item, index) in hotshowList" :key="index">
         <img :src="item.pic" alt="">
         <p>{{item.show_name}}</p>
       </li>
@@ -13,14 +13,11 @@
 <script>
 export default {
   props: ['hotshowList'],
-  data () {
-    return {
-      hotshowData: []
-    }
-  },
-  watch: {
-    hotshowList (val) {
-      this.hotshowData = val
+  methods: {
+    jump (url) {
+      let reg = /com\/(ticket\/)?(\d+)/
+      let id = url.match(reg)[2]
+      this.$router.push({ name: 'ticket', params: { id } })
     }
   }
 }

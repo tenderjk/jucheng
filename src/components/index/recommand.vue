@@ -3,7 +3,7 @@
       <mt-cell title="为你推荐">
       </mt-cell>
       <ul class="recommandContain" :infinite-scroll-immediate-check="true" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-        <li v-for="(item,index) in recommandList" :key="index">
+        <li @click="jump(item.sche_id)" v-for="(item,index) in recommandList" :key="index">
           <div class="img">
             <img :src="item.schePic" alt="">
           </div>
@@ -21,6 +21,7 @@
 <script>
 import axios from 'axios'
 export default {
+  inject: ['jump'],
   props: ['recommandLink'],
   data () {
     return {
