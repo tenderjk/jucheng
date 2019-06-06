@@ -34,7 +34,8 @@ export default new Router({
       path: '/ticket/:id',
       name: 'ticket',
       components: {
-        default: () => import('@/views/Ticket')
+        default: () => import('@/views/Ticket'),
+        footer: () => import('@/components/ticket/addbuy')
       },
       props: { default: true }
     }

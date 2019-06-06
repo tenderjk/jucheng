@@ -20,7 +20,7 @@
         </ul>
     </footer>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/lib/reset.scss';
 @import url('//at.alicdn.com/t/font_1225232_e28vy1kaiqv.css');
 footer {

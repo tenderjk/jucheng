@@ -70,8 +70,9 @@ export default {
       @include flexbox();
       align-items: center;
       justify-content: space-between;
-      @include rect(1.5rem,0.78rem);
+      @include rect(auto,0.78rem);
       padding: 0.1rem 0.1rem;
+      @include flex(0 0 49%);
       .content {
         @include rect(0.8rem,auto);
         font-size: 0.14rem;
@@ -84,8 +85,9 @@ export default {
     justify-content: space-around;
     width:100%;
     li {
+      @include flex(0 0 32%);
       text-align: center;
-      @include rect(0.98rem,0.96rem);
+      @include rect(auto,0.96rem);
       @include flexbox();
       flex-direction: column;
       align-items: center;

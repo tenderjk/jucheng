@@ -61,7 +61,7 @@ export default {
     @include flexbox();
     @include rect(100%,auto);
     margin: 0 0 0.1rem;
-    justify-content: space-between;
+    justify-content: space-around;
     .cover {
       @include rect(0.93rem,1.26rem);
         img {
@@ -100,8 +100,8 @@ export default {
     @include flexbox();
     @include rect(100%,auto);
     li {
-      @include flex(0 0 0.9rem);
       margin-right: 0.1rem;
+      width: 0.96rem;
       img {
         @include rect(100%,1.24rem);
       }

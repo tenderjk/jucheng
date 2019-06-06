@@ -18,7 +18,6 @@ export default {
 .classify {
   margin-top: 0.1rem;
   ul {
-    overflow: auto;
     @include flexbox();
     justify-content: space-around;
     width: 100%;

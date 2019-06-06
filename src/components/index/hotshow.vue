@@ -40,7 +40,8 @@ export default {
   @include rect(100%,1.44rem);
   overflow: auto;
     li {
-    @include flex(0 0 .96rem);
+    @include flex(0 0 auto);
+    width: 0.96rem;
     margin: 0 0.05rem;
     p {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 0.2rem;}
     img {
