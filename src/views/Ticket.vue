@@ -7,7 +7,7 @@
         <router-link to="/" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>
-        <mt-button :class="follow==0?'icon-hert_o':'icon-iconhert'" class="iconfont icon-hert_o" slot="right">
+        <mt-button @click.native="getfollow" :class="follow==0?'icon-hert_o':'icon-iconhert'" class="iconfont" slot="right">
         </mt-button>
         <mt-button class="iconfont icon-ArtboardCopy" slot="right">
         </mt-button>
@@ -89,6 +89,8 @@
 <script>
 import axios from 'axios'
 import recommand from '@/components/ticket/recommand'
+import { Toast } from 'mint-ui'
+axios.defaults.withCredentials = true
 export default {
   props: ['id'],
   inject: ['reload'],
@@ -122,10 +124,26 @@ export default {
   components: {
     recommand
   },
+  methods: {
+    async getfollow () {
+      let msg = await axios.get('https://m.juooo.com/RestTicket/addFollow?schedular_id=' + this.$props.id + '&version=5.1.4&referer=2')
+      msg = msg.data.msg
+      if (msg === 'ok') {
+        if (this.follow === 1) {
+          this.follow = 0
+          Toast('取消收藏成功')
+        } else {
+          this.follow = 1
+          Toast('添加收藏成功')
+        }
+      }
+    }
+  },
   async mounted () {
     let followData = await axios('https://m.juooo.com/RestTicket/isFollowing?&version=5.1.4&referer=2&sch_id=' + this.$props.id)
     followData = followData.data.data
-    this.follow = followData.is_following
+    this.follow = followData.following.is_following
+    console.log(this.follow)
     let ticketData = await axios('https://m.juooo.com/restTicket/getSchDetail?sch_id=' + this.$props.id)
     ticketData = ticketData.data.data
     this.backgroundImg = ticketData.scheInfo.pic

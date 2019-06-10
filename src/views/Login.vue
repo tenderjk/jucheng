@@ -25,7 +25,7 @@
 import { Toast } from 'mint-ui'
 import axios from 'axios'
 import qs from 'querystring'
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 export default {
   data () {
     return {
@@ -54,10 +54,12 @@ export default {
         flag = false
       }
       if (flag === true) {
-        let header = {
+        let config = {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-          }
+          },
+          // withCredentials: true,
+          origin: 'http://localhost'
         }
         let data = {
           username: this.username,
@@ -69,7 +71,7 @@ export default {
           relevanceK: '',
           isRelevance: 0
         }
-        let res = await axios.post('https://m.juooo.com/Passport/doLoginRoute', qs.stringify(data), header)
+        let res = await axios.post('https://m.juooo.com/Passport/doLoginRoute', qs.stringify(data), config)
         res = res.data
         if (res.code === 0) {
           Toast({

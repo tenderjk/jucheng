@@ -22,6 +22,7 @@ import hotshow from '@/components/index/hotshow'
 import category from '@/components/index/category'
 import recommand from '@/components/index/recommand'
 import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
   name: 'home',
   components: {
