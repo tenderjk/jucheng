@@ -46,7 +46,7 @@ export default {
       recommandLink: 'https://m.juooo.com/home/getRecommendShow?cityAdd=SH&version=5.1.4&referer=2'
     }
   },
-  async beforeCreate () {
+  async mounted () {
     // 轮播图数据
     let bannerData = await axios.get('https://m.juooo.com/home/getSildeList?abbreviation=SH&limit=version=5.1.3&referer=2&timestamp=' + new Date().getTime())
     bannerData = bannerData.data.data.silde_list.slice(0, bannerData.data.data.silde_list.length - 2)

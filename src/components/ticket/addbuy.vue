@@ -4,13 +4,55 @@
       <span class="iconfont icon-kefu"></span>
       <p>客服</p>
     </div>
-    <div class="buyButton">
-      立即购买
+    <div class="buyButton" @click="add">
+      加入收藏
     </div>
   </footer>
 </template>
 <script>
+import { Toast } from 'mint-ui'
 export default {
+  data () {
+    return {
+      id: '',
+      img: '',
+      name: '',
+      price: ''
+    }
+  },
+  mounted () {
+    this.$root.Bus.$on('ticketMsg', res => {
+      this.id = res.id
+      this.img = res.img
+      this.name = res.name
+      this.price = res.price
+    })
+  },
+  methods: {
+    add () {
+      if (this.$store.state.login.loginStatus !== true) {
+        this.$router.push({ name: 'login' })
+        return
+      }
+      if (this.id === '') {
+        Toast({
+          message: '请等待数据加载',
+          position: 'middle',
+          duration: 2000
+        })
+        return
+      }
+      this.$store.commit('addCart', { id: this.id, img: this.img, name: this.name, price: this.price })
+      Toast({
+        message: '添加成功',
+        position: 'middle',
+        duration: 2000
+      })
+    }
+  },
+  beforeDestroy () {
+    this.$root.Bus.$off('ticketMsg')
+  }
 }
 </script>
 <style lang="scss" scoped>

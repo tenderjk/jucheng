@@ -15,10 +15,9 @@ export default {
     }
   },
   methods: {
-    async changeAlive () {
+    changeAlive () {
       this.isRouterAlive = false
-      await this.$nextTick()
-      this.isRouterAlive = true
+      this.$nextTick(() => { this.isRouterAlive = true })
     },
     jump (id) {
       this.$router.push({ name: 'ticket', params: { id } })

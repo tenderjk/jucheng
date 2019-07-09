@@ -53,6 +53,7 @@ export default {
 @import '@/lib/reset.scss';
 .recommand {
   margin: 0.2rem 0.1rem;
+  text-align: center;
   .mint-cell-title {
     text-align: left;
   }
@@ -60,6 +61,7 @@ export default {
     background-image: none;
   }
   .recommandContain {
+    text-align: left;
     li {
       @include flexbox();
       @include rect(100%,auto);

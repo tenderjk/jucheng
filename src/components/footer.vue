@@ -9,9 +9,9 @@
               <span class="iconfont icon-gejuyuan"></span>
               <p>剧院</p>
             </router-link>
-            <router-link tag="li" :to="{ name: 'home' }">
+            <router-link tag="li" :to="{ name: 'collect' }">
               <span class="iconfont icon-piaojia"></span>
-              <p>票夹</p>
+              <p>收藏</p>
             </router-link>
             <router-link tag="li" :to="{ name: 'user' }">
               <span class="iconfont icon-iconfuzhi"></span>

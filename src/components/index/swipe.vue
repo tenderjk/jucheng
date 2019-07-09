@@ -8,11 +8,20 @@
     </section>
 </template>
 <script>
+import { Toast } from 'mint-ui'
 export default {
   props: ['bannerList'],
   methods: {
     jump (url) {
       let reg = /com\/(ticket\/)?(\d+)&/
+      if (!url.match(reg)) {
+        Toast({
+          message: '该页目前不支持跳转，滑动下一页试试？',
+          position: 'middle',
+          duration: 2000
+        })
+        return
+      }
       let id = url.match(reg)[2]
       this.$router.push({ name: 'ticket', params: { id } })
     }

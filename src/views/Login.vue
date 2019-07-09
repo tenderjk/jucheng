@@ -8,7 +8,7 @@
       </mt-header>
     </div>
     <div class="welcome">
-      <p>欢迎来到jucheng网</p>
+      <p>欢迎您的到来</p>
     </div>
     <div class="login">
       <input placeholder="请输入用户名" v-model="username" />
@@ -29,8 +29,8 @@ import qs from 'querystring'
 export default {
   data () {
     return {
-      username: '',
-      password: ''
+      username: '18361055233',
+      password: 'abc123456'
     }
   },
   methods: {
@@ -83,7 +83,9 @@ export default {
             message: res.msg,
             duration: 2000
           })
-          localStorage.setItem('username', this.username)
+          this.$store.commit('setLoginStatus', { status: true, name: this.username })
+          // this.$store.commit('changeLoginStatus', true)
+          // sessionStorage.setItem('username', this.username)
           this.$router.go(-1)
         }
       }

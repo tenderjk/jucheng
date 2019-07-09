@@ -40,6 +40,14 @@ export default new Router({
       props: { default: true }
     },
     {
+      path: '/collect',
+      name: 'collect',
+      components: {
+        default: () => import('@/views/Collection'),
+        footer: Footer
+      }
+    },
+    {
       path: '/user',
       name: 'user',
       components: {
@@ -51,6 +59,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: () => import('@/views/Login')
+    },
+    {
+      path: '/user/follow',
+      name: 'follow',
+      component: () => import('@/views/MyFollow')
     }
   ]
 })

@@ -4,9 +4,9 @@
       <img class="bg_img bg_last_img" :src="backgroundImg" alt="">
       <img class="bg_img blur" :src="backgroundImg" alt="">
       <mt-header title="演出详情">
-        <router-link to="/" slot="left">
+        <a @click="$router.go(-1)" slot="left">
           <mt-button icon="back"></mt-button>
-        </router-link>
+        </a>
         <mt-button @click.native="getfollow" :class="follow==0?'icon-hert_o':'icon-iconhert'" class="iconfont" slot="right">
         </mt-button>
         <mt-button class="iconfont icon-ArtboardCopy" slot="right">
@@ -126,6 +126,10 @@ export default {
   },
   methods: {
     async getfollow () {
+      if (this.$store.state.login.loginStatus !== true) {
+        this.$router.push({ name: 'login' })
+        return
+      }
       let msg = await axios.get('https://m.juooo.com/RestTicket/addFollow?schedular_id=' + this.$props.id + '&version=5.1.4&referer=2')
       msg = msg.data.msg
       if (msg === 'ok') {
@@ -143,7 +147,6 @@ export default {
     let followData = await axios('https://m.juooo.com/RestTicket/isFollowing?&version=5.1.4&referer=2&sch_id=' + this.$props.id)
     followData = followData.data.data
     this.follow = followData.following.is_following
-    console.log(this.follow)
     let ticketData = await axios('https://m.juooo.com/restTicket/getSchDetail?sch_id=' + this.$props.id)
     ticketData = ticketData.data.data
     this.backgroundImg = ticketData.scheInfo.pic
@@ -171,6 +174,7 @@ export default {
     showList = showList.data.data.list
     this.showList = showList
     this.shoeListFlag = true
+    this.$root.Bus.$emit('ticketMsg', { id: this.show_id, img: this.backgroundImg, name: this.schedularName, price: parseInt(this.priceInterval) })
   },
   watch: {
     $route (to, from) {
@@ -288,11 +292,13 @@ export default {
     padding:0 0.1rem;
     border-bottom: 0.15rem solid #e5e5e5;
     .enter,.support {
-      font: 0.13rem/0.5rem "";
-      height: 0.5rem;
+      padding: .2rem 0;
+      text-align: left;
+      font: 0.13rem/0.15rem "";
       @include flexbox();
+      align-items: flex-start;
       color:#999;
-      span {padding-right: 0.1rem;}
+      span {padding-right: 0.1rem;flex: 0 0.4rem;}
       border-bottom:0.01rem solid #e5e5e5
     }
     .enter p {

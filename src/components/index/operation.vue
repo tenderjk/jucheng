@@ -96,6 +96,7 @@ export default {
       flex-direction: column;
       align-items: center;
       p {font-size: 0.1rem;}
+      justify-content: center;
     }
   }
 }
